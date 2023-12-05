@@ -118,19 +118,38 @@ $result = $conn->query($sql);
                                         <button type="button" class="btn btn-danger text-white" data-bs-toggle="modal" data-bs-target="#deleteproduct<?= $row["product_id"] ?>"><i class="bi bi-cart-dash" title="下架商品"></i></button>
                                         <!-- 上下架版本 -->
                                         <!-- Modal -->
+                                        <!-- 上架 -->
                                         <div class="modal fade" id="deleteproduct<?= $row["product_id"] ?>" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                                             <div class="modal-dialog">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
-                                                        <h1 class="modal-title fs-5" id="staticBackdropLabel">刪除</h1>
+                                                        <h1 class="modal-title fs-5" id="staticBackdropLabel">上架商品通知</h1>
                                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                     </div>
                                                     <div class="modal-body">
-                                                        確定要刪除此筆商品？
+                                                        確定要上架此筆商品？
                                                     </div>
                                                     <div class="modal-footer">
                                                         <button type="reset" class="btn btn-secondary" data-bs-dismiss="modal">取消</button>
-                                                        <a class="btn btn-danger text-white" href="doDeleteProduct.php?product_id=<?= $row["product_id"] ?>">刪除</a>
+                                                        <a class="btn btn-danger text-white" href="doDeleteProduct-1.php?product_id=<?= $row["product_id"] ?>">上架商品</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- 下架 -->
+                                        <div class="modal fade" id="deleteproduct<?= $row["product_id"] ?>" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h1 class="modal-title fs-5" id="staticBackdropLabel">下架商品通知</h1>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        確定要下架此筆商品？
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="reset" class="btn btn-secondary" data-bs-dismiss="modal">取消</button>
+                                                        <a class="btn btn-danger text-white" href="doDeleteProduct.php?product_id=<?= $row["product_id"] ?>">下架商品</a>
                                                     </div>
                                                 </div>
                                             </div>
