@@ -110,7 +110,13 @@ $result = $conn->query($sql);
                                     <td class="text-nowrap">
                                         <a class="btn btn-warning text-white" href="edit-prodict.php?product_id=<?= $row["product_id"] ?>" title="編輯商品"><i class="bi bi-pencil-square"></i></a>
                                         <!-- Button trigger modal -->
-                                        <button type="button" class="btn btn-danger text-white" data-bs-toggle="modal" data-bs-target="#deleteproduct<?= $row["product_id"] ?>"><i class="bi bi-trash3" title="刪除商品"></i></button>
+                                        <!-- 刪除版本 -->
+                                        <!-- <button type="button" class="btn btn-danger text-white" data-bs-toggle="modal" data-bs-target="#deleteproduct<?= $row["product_id"] ?>"><i class="bi bi-trash3" title="刪除商品"></i></button> -->
+
+                                        <!-- 上下架版本 -->
+                                        <button type="button" class="btn btn-danger text-white" data-bs-toggle="modal" data-bs-target="#deleteproduct<?= $row["product_id"] ?>"><i class="bi bi-cart-plus-fill" title="上架商品"></i></button>
+                                        <button type="button" class="btn btn-danger text-white" data-bs-toggle="modal" data-bs-target="#deleteproduct<?= $row["product_id"] ?>"><i class="bi bi-cart-dash" title="下架商品"></i></button>
+                                        <!-- 上下架版本 -->
                                         <!-- Modal -->
                                         <div class="modal fade" id="deleteproduct<?= $row["product_id"] ?>" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                                             <div class="modal-dialog">
