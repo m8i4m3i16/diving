@@ -1,11 +1,11 @@
 <?php
 require_once("product-db-connect.php");
 
-$sqlTotal=" SELECT * FROM product WHERE valid=1";
+$sqlTotal = " SELECT * FROM product WHERE valid=1";
 $resultTotal = $conn->query($sqlTotal);
 $totalProduct = $resultTotal->num_rows;
 $perPage = 5;
-$perPage = ceil($totalProduct/$perPage);
+$perPage = ceil($totalProduct / $perPage);
 
 
 if (isset($_GET["search"])) {
@@ -16,10 +16,7 @@ if (isset($_GET["search"])) {
             product_count LIKE '%$search%' OR 
             product_price LIKE '%$search%' OR 
             product_info LIKE '%$search%' AND valid=1";
-} 
-
-
-else {
+} else {
     $sql = "SELECT * FROM product WHERE valid=1";
 }
 
@@ -37,7 +34,14 @@ $result = $conn->query($sql);
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <?php include("../diving/css.php") ?>
-   
+    <style>
+        .object-fit-cover {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+        }
+    </style>
+
 
 </head>
 
@@ -61,13 +65,14 @@ $result = $conn->query($sql);
 
 
             <!-- 搜尋 -->
-            <?php if (isset($_GET["search"])) {            
-                echo "搜尋 {$_GET["search"]} 的結果 ";  } ?>
+            <?php if (isset($_GET["search"])) {
+                echo "搜尋 {$_GET["search"]} 的結果 ";
+            } ?>
             <?php if (isset($_GET["search"])) : ?>
                 <a href="product-list.php" class="btn btn-primary text-white"><i class="bi bi-arrow-counterclockwise"></i></a>
                 <!-- 搜尋 <?= $_GET["search"] ?> 的結果, -->
             <?php endif; ?>
-            
+
             <div class="py-1">
                 <form action="">
                     <div class="input-group mb-3 px-3">
@@ -110,8 +115,8 @@ $result = $conn->query($sql);
                                     <td><?= $row["product_id"] ?></td>
                                     <td>
                                         <div class="col-lg-3 col-md-4 col-sm-6">
-                                            <div class="ratio ratio-1x1">
-                                                <img class="img-fluid" src="../diving-images/<?=$row["product_img"]?>" alt="產品圖片">
+                                            <div class="ratio ratio-1x1 object-fit-cover">
+                                                <img class="img-fluid" src="../diving-images/<?= $row["product_img"] ?>" alt="產品圖片">
                                             </div>
                                         </div>
                                     </td>
