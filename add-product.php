@@ -23,28 +23,28 @@
             <!-- 每一個欄位 -->
             <div class="mb-3">
                 <label for="exampleInputEmail1" class="form-label">商品名稱</label>
-                <input type="text" class="form-control" id="product_name" name="product_name" placeholder="輸入商品名稱" required>
+                <input type="text" class="form-control" id="name" name="name" placeholder="輸入商品名稱" required>
             </div>
 
             <div class="mb-3">
                 <label for="exampleInputEmail1" class="form-label">規格</label>
-                <input type="text" class="form-control" id="product_size" name="product_size" placeholder="輸入商品規格" required>
+                <input type="text" class="form-control" id="size" name="size" placeholder="輸入商品規格" required>
             </div>
 
             <div class="mb-3">
                 <label for="exampleInputEmail1" class="form-label">數量</label>
-                <input type="text" class="form-control" id="product_count" name="product_count" placeholder="輸入商品數量">
+                <input type="text" class="form-control" id="count" name="count" placeholder="輸入商品數量">
             </div>
 
             <div class="mb-3">
                 <label for="exampleInputEmail1" class="form-label">價格</label>
-                <input type="text" class="form-control" id="product_price" name="product_price" placeholder="輸入商品價格" required>
+                <input type="text" class="form-control" id="price" name="price" placeholder="輸入商品價格" required>
             </div>
 
 
             <div class="mb-3">
                 <label for="exampleInputEmail1" class="form-label">商品描述</label>
-                <textarea class="form-control" name="product_info" id="product_info" placeholder="輸入商品描述" cols="10" rows="10" required></textarea>
+                <textarea class="form-control" name="info" id="info" placeholder="輸入商品描述" cols="10" rows="10" required></textarea>
             </div>
 
             <!-- 商品圖片 -->

@@ -11,11 +11,11 @@ $perPage = ceil($totalProduct / $perPage);
 if (isset($_GET["search"])) {
     $search = $_GET["search"];
     $sql = "SELECT * FROM product WHERE 
-            product_name LIKE '%$search%' OR 
-            product_size LIKE '%$search%' OR 
-            product_count LIKE '%$search%' OR 
-            product_price LIKE '%$search%' OR 
-            product_info LIKE '%$search%' AND valid=1";
+            name LIKE '%$search%' OR 
+            size LIKE '%$search%' OR 
+            count LIKE '%$search%' OR 
+            price LIKE '%$search%' OR 
+            info LIKE '%$search%' AND valid=1";
 } else {
     $sql = "SELECT * FROM product WHERE valid=1";
 }
@@ -39,7 +39,7 @@ $result = $conn->query($sql);
             width: 100px;
             height: 100px;
             object-fit: cover;
-        }
+        }        
     </style>
 
 
@@ -112,33 +112,33 @@ $result = $conn->query($sql);
                         <?php if ($productCount > 0) : ?>
                             <?php foreach ($rows as $row) : ?>
                                 <tr>
-                                    <td><?= $row["product_id"] ?></td>
+                                    <td><?= $row["id"] ?></td>
                                     <td>
                                         <div class="col-lg-3 col-md-4 col-sm-6">
                                             <div class="ratio ratio-1x1 object-fit-cover">
-                                                <img class="img-fluid" src="../diving-images/<?= $row["product_img"] ?>" alt="產品圖片">
+                                                <img class="img-fluid" src="../diving-images/<?= $row["img"] ?>" alt="產品圖片">
                                             </div>
                                         </div>
                                     </td>
-                                    <td><?= $row["product_name"] ?></td>
-                                    <td><?= $row["product_info"] ?></td>
-                                    <td><?= $row["product_size"] ?></td>
-                                    <td><?= number_format($row["product_count"]) ?></td>
-                                    <td><?= number_format($row["product_price"]) ?></td>
+                                    <td><?= $row["name"] ?></td>
+                                    <td><?= $row["info"] ?></td>
+                                    <td><?= $row["size"] ?></td>
+                                    <td><?= number_format($row["count"]) ?></td>
+                                    <td><?= number_format($row["price"]) ?></td>
                                     <td><?= $row["created_at"] ?></td>
 
                                     <td class="text-nowrap">
-                                        <a class="btn btn-warning text-white" href="edit-prodict.php?product_id=<?= $row["product_id"] ?>" title="編輯商品"><i class="bi bi-pencil-square"></i></a>
+                                        <a class="btn btn-warning text-white" href="edit-prodict.php?id=<?= $row["id"] ?>" title="編輯商品"><i class="bi bi-pencil-square"></i></a>
                                         <!-- Button trigger modal -->
                                         <!-- 刪除版本 -->
-                                        <button type="button" class="btn btn-danger text-white" data-bs-toggle="modal" data-bs-target="#deleteproduct<?= $row["product_id"] ?>"><i class="bi bi-trash3" title="刪除商品"></i></button>
+                                        <button type="button" class="btn btn-danger text-white" data-bs-toggle="modal" data-bs-target="#deleteproduct<?= $row["id"] ?>"><i class="bi bi-trash3" title="刪除商品"></i></button>
 
                                         <!-- 上下架版本 -->
                                         <!-- <button type="button" class="btn btn-danger text-white" data-bs-toggle="modal" data-bs-target="#deleteproduct<?= $row["product_id"] ?>"><i class="bi bi-cart-plus-fill" title="上架商品"></i></button>
                                         <button type="button" class="btn btn-danger text-white" data-bs-toggle="modal" data-bs-target="#deleteproduct<?= $row["product_id"] ?>"><i class="bi bi-cart-dash" title="下架商品"></i></button> -->
                                         <!-- 上下架版本 -->
                                         <!-- Modal -->
-                                        <div class="modal fade" id="deleteproduct<?= $row["product_id"] ?>" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                                        <div class="modal fade" id="deleteproduct<?= $row["id"] ?>" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                                             <div class="modal-dialog">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
@@ -150,7 +150,7 @@ $result = $conn->query($sql);
                                                     </div>
                                                     <div class="modal-footer">
                                                         <button type="reset" class="btn btn-secondary" data-bs-dismiss="modal">取消</button>
-                                                        <a class="btn btn-danger text-white" href="doDeleteProduct.php?product_id=<?= $row["product_id"] ?>">刪除</a>
+                                                        <a class="btn btn-danger text-white" href="doDeleteProduct.php?id=<?= $row["id"] ?>">刪除</a>
                                                     </div>
                                                 </div>
                                             </div>

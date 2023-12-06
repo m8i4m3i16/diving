@@ -2,28 +2,25 @@
 require_once("product-db-connect.php");
 
 
-
-if(!isset($_POST["product_name"])){
+if(!isset($_POST["name"])){
     echo "請從正確管道進入";
     exit;
 }
 
-$id=$_POST["product_id"]; 
-$product_name=$_POST["product_name"];
-$product_size=$_POST["product_size"];
-$product_count=$_POST["product_count"];
-$product_price=$_POST["product_price"];
-$product_info=$_POST["product_info"];
+$id=$_POST["id"]; 
+$name=$_POST["name"];
+$size=$_POST["size"];
+$count=$_POST["count"];
+$price=$_POST["price"];
+$info=$_POST["info"];
 $fileName=$_FILES["file"]["name"];
 
 
-//echo $product_name;
-//var_dump($id,$product_name,$product_size,$product_count,$product_price,$product_info);
 
-$sql="UPDATE product SET product_name='$product_name',product_size='$product_size', product_count='$product_count',product_price='$product_price',product_info='$product_info',product_img='$fileName', valid=1 WHERE product_id=$id";
-//var_dump($_FILES["file"]);
-//echo $sql;
-//var_dump($sql);
+$sql="UPDATE product SET name='$name',size='$size', count='$count',price='$price',info='$info', img='$fileName', valid=1 WHERE id=$id";
+
+
+
 
 
 if($_FILES["file"]["error"]==0){

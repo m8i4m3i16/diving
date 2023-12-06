@@ -1,13 +1,13 @@
 <?php
 require_once("product-db-connect.php");
 
-if(!isset($_GET["product_id"])){ 
+if(!isset($_GET["id"])){ 
     header("location: product-list.php"); 
 }
 
-$id=$_GET["product_id"]; 
+$id=$_GET["id"]; 
 
-$sql="SELECT * FROM product WHERE product_id=$id";
+$sql="SELECT * FROM product WHERE id=$id";
 $result=$conn->query($sql);
 
 $row=$result->fetch_assoc();
@@ -38,36 +38,31 @@ $row=$result->fetch_assoc();
             </div>
 
             <!-- 每一個欄位 -->
-            <input type="hidden" name="product_id" value="<?=$row["product_id"]?>">
+            <input type="hidden" name="id" value="<?=$row["id"]?>">
 
             <div class="mb-3">
                 <label for="product_name" class="form-label">商品名稱</label>
-                <input type="text" class="form-control" id="product_name" name="product_name" value="<?= $row["product_name"]?>">
+                <input type="text" class="form-control" id="name" name="name" value="<?= $row["name"]?>">
             </div>
 
             <div class="mb-3">
                 <label for="exampleInputEmail1" class="form-label">規格</label>
-                <input type="text" class="form-control" id="product_size" name="product_size" value="<?= $row["product_size"]?>">
+                <input type="text" class="form-control" id="size" name="size" value="<?= $row["size"]?>">
             </div>
 
             <div class="mb-3">
                 <label for="exampleInputEmail1" class="form-label">數量</label>
-                <input type="text" class="form-control" id="product_count" name="product_count" value="<?= $row["product_count"]?>">
+                <input type="text" class="form-control" id="count" name="count" value="<?= $row["count"]?>">
             </div>
 
             <div class="mb-3">
                 <label for="exampleInputEmail1" class="form-label">價格</label>
-                <input type="text" class="form-control" id="product_price" name="product_price" value="<?= $row["product_price"]?>">
+                <input type="text" class="form-control" id="price" name="price" value="<?= $row["price"]?>">
             </div>
-
-            <!-- <div class="mb-3">
-                <label for="exampleInputEmail1" class="form-label">商品描述</label>
-                <input type="text" class="form-control" id="product_info" name="product_info" value="<?= $row["product_info"]?>">
-            </div> -->
 
             <div class="mb-3">
                 <label for="exampleInputEmail1" class="form-label">商品描述</label>
-                <textarea class="form-control" name="product_info" id="product_info" cols="10" rows="10" required><?=$row["product_info"]?></textarea>
+                <textarea class="form-control" name="info" id="info" cols="10" rows="10" required><?=$row["info"]?></textarea>
             </div>
 
             <!-- 商品圖片 -->

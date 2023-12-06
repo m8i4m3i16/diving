@@ -3,11 +3,11 @@ require_once("product-db-connect.php");
 
 
 
-$product_name=$_POST["product_name"];
-$product_size=$_POST["product_size"];
-$product_count=$_POST["product_count"];
-$product_price=$_POST["product_price"];
-$product_info=$_POST["product_info"];
+$name=$_POST["name"];
+$size=$_POST["size"];
+$count=$_POST["count"];
+$price=$_POST["price"];
+$info=$_POST["info"];
 $fileName=$_FILES["file"]["name"]; //file==輸入類型;name==檔案名稱
 date_default_timezone_set("Asia/Taipei"); 
 $time=date('Y-m-d H:i:s');
@@ -16,19 +16,18 @@ $time=date('Y-m-d H:i:s');
 //var_dump($product_name,$product_size,$product_count,$product_price,$product_info,$fileName);
 
 
-if(!isset($_POST["product_name"]) || empty($_POST["product_name"]) || !isset($_POST["product_name"]) || 
-empty($_POST["product_name"]) ||
-   !isset($_POST["product_size"]) || empty($_POST["product_size"]) ||
-   !isset($_POST["product_count"]) || empty($_POST["product_count"]) ||
-   !isset($_POST["product_price"]) || empty($_POST["product_price"]) ||
-   !isset($_POST["product_info"]) || empty($_POST["product_info"])) {
+if(!isset($_POST["name"]) || empty($_POST["name"]) ||
+   !isset($_POST["size"]) || empty($_POST["size"]) ||
+   !isset($_POST["count"]) || empty($_POST["count"]) ||
+   !isset($_POST["price"]) || empty($_POST["price"]) ||
+   !isset($_POST["info"]) || empty($_POST["info"])) {
     echo "請輸入正確資料";
     die;
 }
 
 
-$sql = "INSERT INTO product (product_name, product_size, product_count, product_price, product_info, created_at, valid, product_img	)
-VALUES ('$product_name', '$product_size', '$product_count', '$product_price', '$product_info', '$time', 1, '$fileName')";
+$sql = "INSERT INTO product (name, size, count, price, info, created_at, valid, img)
+VALUES ('$name', '$size', '$count', '$price', '$info', '$time', 1, '$fileName')";
 
 
 if($_FILES["file"]["error"]==0){
