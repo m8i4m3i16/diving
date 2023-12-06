@@ -12,7 +12,7 @@
 
 <body>
     <div class="container">
-        <form action="doAddProduct.php" method="post">
+        <form action="doAddProduct.php" method="post" enctype="multipart/form-data">
             <h1 class="text-center p-3">新增商品</h1>
 
             <!-- 返回商品列表按鈕 -->
@@ -48,10 +48,10 @@
             </div>
 
             <!-- 商品圖片 -->
-            <!-- <div class="input-group mt-3">
-                <input type="file" class="form-control" id="inputGroupFile02">
-                <label class="input-group-text" for="inputGroupFile02">上傳圖片</label>
-            </div> -->
+            <div class="input-group mt-3">
+                <input type="file" id="product_img" name="product_img" class="form-control">
+                <label class="input-group-text" for="product_img">上傳圖片</label>
+            </div>
 
 
             <!-- 確定送出按鈕 -->

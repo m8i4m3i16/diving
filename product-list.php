@@ -99,7 +99,13 @@ $result = $conn->query($sql);
                             <?php foreach ($rows as $row) : ?>
                                 <tr>
                                     <td><?= $row["product_id"] ?></td>
-                                    <!-- <td>商品圖片</td> -->
+                                    <td>
+                                        <div class="col-lg-3 col-md-4 col-sm-6">
+                                            <div class="ratio ratio-1x1">
+                                                <img class="img-fluid" src="/diving-images/<?=$row["product_img"]?>" alt="產品圖片">
+                                            </div>
+                                        </div>
+                                    </td>
                                     <td><?= $row["product_name"] ?></td>
                                     <td><?= $row["product_info"] ?></td>
                                     <td><?= $row["product_size"] ?></td>
@@ -111,11 +117,11 @@ $result = $conn->query($sql);
                                         <a class="btn btn-warning text-white" href="edit-prodict.php?product_id=<?= $row["product_id"] ?>" title="編輯商品"><i class="bi bi-pencil-square"></i></a>
                                         <!-- Button trigger modal -->
                                         <!-- 刪除版本 -->
-                                        <!-- <button type="button" class="btn btn-danger text-white" data-bs-toggle="modal" data-bs-target="#deleteproduct<?= $row["product_id"] ?>"><i class="bi bi-trash3" title="刪除商品"></i></button> -->
+                                        <button type="button" class="btn btn-danger text-white" data-bs-toggle="modal" data-bs-target="#deleteproduct<?= $row["product_id"] ?>"><i class="bi bi-trash3" title="刪除商品"></i></button>
 
                                         <!-- 上下架版本 -->
-                                        <button type="button" class="btn btn-danger text-white" data-bs-toggle="modal" data-bs-target="#deleteproduct<?= $row["product_id"] ?>"><i class="bi bi-cart-plus-fill" title="上架商品"></i></button>
-                                        <button type="button" class="btn btn-danger text-white" data-bs-toggle="modal" data-bs-target="#deleteproduct<?= $row["product_id"] ?>"><i class="bi bi-cart-dash" title="下架商品"></i></button>
+                                        <!-- <button type="button" class="btn btn-danger text-white" data-bs-toggle="modal" data-bs-target="#deleteproduct<?= $row["product_id"] ?>"><i class="bi bi-cart-plus-fill" title="上架商品"></i></button>
+                                        <button type="button" class="btn btn-danger text-white" data-bs-toggle="modal" data-bs-target="#deleteproduct<?= $row["product_id"] ?>"><i class="bi bi-cart-dash" title="下架商品"></i></button> -->
                                         <!-- 上下架版本 -->
                                         <!-- Modal -->
                                         <div class="modal fade" id="deleteproduct<?= $row["product_id"] ?>" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
