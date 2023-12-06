@@ -1,6 +1,13 @@
 <?php
 require_once("product-db-connect.php");
 
+$sqlTotal=" SELECT * FROM product WHERE valid=1";
+$resultTotal = $conn->query($sqlTotal);
+$totalProduct = $resultTotal->num_rows;
+$perPage = 5;
+$perPage = ceil($totalProduct/$perPage);
+
+
 if (isset($_GET["search"])) {
     $search = $_GET["search"];
     $sql = "SELECT * FROM product WHERE 
@@ -9,13 +16,14 @@ if (isset($_GET["search"])) {
             product_count LIKE '%$search%' OR 
             product_price LIKE '%$search%' OR 
             product_info LIKE '%$search%' AND valid=1";
-} else {
+} 
+
+
+else {
     $sql = "SELECT * FROM product WHERE valid=1";
 }
 
 
-// $resultTotal = $conn->query($sqlTotal);
-// $totalUser = $resultTotal->num_rows;
 
 $result = $conn->query($sql);
 ?>
@@ -102,7 +110,7 @@ $result = $conn->query($sql);
                                     <td>
                                         <div class="col-lg-3 col-md-4 col-sm-6">
                                             <div class="ratio ratio-1x1">
-                                                <img class="img-fluid" src="/diving-images/<?=$row["product_img"]?>" alt="產品圖片">
+                                                <img class="img-fluid" src="../diving-images/<?=$row["product_img"]?>" alt="產品圖片">
                                             </div>
                                         </div>
                                     </td>

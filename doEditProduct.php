@@ -14,15 +14,25 @@ $product_size=$_POST["product_size"];
 $product_count=$_POST["product_count"];
 $product_price=$_POST["product_price"];
 $product_info=$_POST["product_info"];
-//$product_img=$_POST["product_img"];
+$fileName=$_FILES["file"]["name"];
+
 
 //echo $product_name;
 //var_dump($id,$product_name,$product_size,$product_count,$product_price,$product_info);
 
-$sql="UPDATE product SET product_name='$product_name',product_size='$product_size', product_count='$product_count',product_price='$product_price',product_info='$product_info', valid=1 WHERE product_id=$id";
+$sql="UPDATE product SET product_name='$product_name',product_size='$product_size', product_count='$product_count',product_price='$product_price',product_info='$product_info',product_img='$fileName', valid=1 WHERE product_id=$id";
 
 //echo $sql;
-var_dump($sql);
+//var_dump($sql);
+
+
+if($_FILES["file"]["error"]==0){
+    move_uploaded_file($_FILES["file"]["tmp_name"], "../diving-images/".$_FILES["file"]["name"]);
+    echo "上傳成功";
+
+}else{
+    echo "上傳失敗";
+}
 
 
 if($conn->query($sql) === TRUE){
@@ -31,6 +41,7 @@ if($conn->query($sql) === TRUE){
     echo "更新資料錯誤: " . $conn->error;
 }
 
+
 $conn->close();
 
-header("location: product-list.php?product_id=$id");
+//header("location: product-list.php?product_id=$id");

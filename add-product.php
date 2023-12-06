@@ -49,8 +49,8 @@
 
             <!-- 商品圖片 -->
             <div class="input-group mt-3">
-                <input type="file" id="product_img" name="product_img" class="form-control">
-                <label class="input-group-text" for="product_img">上傳圖片</label>
+                <input type="file" id="file" name="file" class="form-control">
+                <label class="input-group-text">上傳圖片</label>
             </div>
 
 

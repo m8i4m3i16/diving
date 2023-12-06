@@ -2,17 +2,18 @@
 require_once("product-db-connect.php");
 
 
+
 $product_name=$_POST["product_name"];
 $product_size=$_POST["product_size"];
 $product_count=$_POST["product_count"];
 $product_price=$_POST["product_price"];
 $product_info=$_POST["product_info"];
-$product_img=$_POST["product_img"];
+$fileName=$_FILES["file"]["name"]; //file==輸入類型;name==檔案名稱
 date_default_timezone_set("Asia/Taipei"); 
 $time=date('Y-m-d H:i:s');
 
 
-var_dump($product_name,$product_size,$product_count,$product_price,$product_info,$product_img);
+//var_dump($product_name,$product_size,$product_count,$product_price,$product_info,$fileName);
 
 
 if(!isset($_POST["product_name"]) || empty($_POST["product_name"]) || !isset($_POST["product_name"]) || 
@@ -26,19 +27,27 @@ empty($_POST["product_name"]) ||
 }
 
 
-// $sql = "INSERT INTO product (product_name, product_size, product_count, product_price, product_info, created_at, valid)
-// VALUES ('$product_name', '$product_size', '$product_count', '$product_price', '$product_info', '$time', 1)";
+$sql = "INSERT INTO product (product_name, product_size, product_count, product_price, product_info, created_at, valid, product_img	)
+VALUES ('$product_name', '$product_size', '$product_count', '$product_price', '$product_info', '$time', 1, '$fileName')";
 
 
-// if ($conn->query($sql) === TRUE) {
-//     echo "新增資料完成";
-//     $last_id = $conn->insert_id;
-//     echo "最新一筆為序號".$last_id; 
-// } else {
-//     echo "新增資料錯誤: " . 
-//     $conn->error;
-// }
+if($_FILES["file"]["error"]==0){
+    move_uploaded_file($_FILES["file"]["tmp_name"], "../diving-images/".$_FILES["file"]["name"]);
+    echo "上傳成功";
+}else{
+    echo "上傳失敗";
+}
 
-// $conn->close();
 
-// header("location: product-list.php");
+if ($conn->query($sql) === TRUE) {
+    echo "新增資料完成";
+    $last_id = $conn->insert_id;
+    echo "最新一筆為序號".$last_id; 
+} else {
+    echo "新增資料錯誤: " . 
+    $conn->error;
+}
+
+$conn->close();
+
+header("location: product-list.php");
