@@ -21,7 +21,7 @@ $fileName=$_FILES["file"]["name"];
 //var_dump($id,$product_name,$product_size,$product_count,$product_price,$product_info);
 
 $sql="UPDATE product SET product_name='$product_name',product_size='$product_size', product_count='$product_count',product_price='$product_price',product_info='$product_info',product_img='$fileName', valid=1 WHERE product_id=$id";
-
+//var_dump($_FILES["file"]);
 //echo $sql;
 //var_dump($sql);
 
@@ -44,4 +44,4 @@ if($conn->query($sql) === TRUE){
 
 $conn->close();
 
-//header("location: product-list.php?product_id=$id");
+header("location: product-list.php?product_id=$id");

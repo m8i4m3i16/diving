@@ -28,7 +28,7 @@ $row=$result->fetch_assoc();
 
 <body>
     <div class="container">
-        <form action="doEditProduct.php" method="post">
+        <form action="doEditProduct.php" method="post" enctype="multipart/form-data">
             <h1 class="text-center p-3">修改商品內容</h1>
             
 
