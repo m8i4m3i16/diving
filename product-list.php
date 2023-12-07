@@ -4,8 +4,8 @@ require_once("product-db-connect.php");
 $sqlTotal = " SELECT * FROM product WHERE valid=1";
 $resultTotal = $conn->query($sqlTotal);
 $totalProduct = $resultTotal->num_rows;
-$perPage = 5;
-$perPage = ceil($totalProduct / $perPage);
+$perPage = 6;
+$pageCount = ceil($totalProduct / $perPage);
 
 
 if (isset($_GET["search"])) {
@@ -16,14 +16,51 @@ if (isset($_GET["search"])) {
             count LIKE '%$search%' OR 
             price LIKE '%$search%' OR 
             info LIKE '%$search%' AND valid=1";
+} elseif (isset($_GET["page"]) && isset($_GET["order"])) {
+    $page = $_GET["page"];
+    $order = $_GET["order"];
+    switch ($order) {
+        case 1:
+            $orderSql = "price ASC";
+            break;
+        case 2:
+            $orderSql = "price DESC";
+            break;
+            //   case 3:
+            //     $orderSql = "name ASC";
+            //     break;
+            //   case 4:
+            //     $orderSql = "name DESC";
+            //     break;
+        default:
+            $orderSql = "id ASC";
+    }
+
+    $startItem = ($page - 1) * $perPage;
+
+    $sql = "SELECT * FROM product WHERE valid=1 ORDER BY $orderSql LIMIT $startItem,$perPage";
 } else {
-    $sql = "SELECT * FROM product WHERE valid=1";
+    $page = 1;
+    $order = 1;
+    $sql = "SELECT * FROM product WHERE valid=1 ORDER BY id ASC LIMIT 0,$perPage";
 }
 
-
-
 $result = $conn->query($sql);
+
 ?>
+
+
+<!-- if (isset($_GET["search"])) {
+    $search = $_GET["search"];
+    $sql = "SELECT * FROM product WHERE 
+            name LIKE '%$search%' OR 
+            size LIKE '%$search%' OR 
+            count LIKE '%$search%' OR 
+            price LIKE '%$search%' OR 
+            info LIKE '%$search%' AND valid=1";
+} else {
+    $sql = "SELECT * FROM product WHERE valid=1";
+} -->
 
 <!doctype html>
 <html lang="en">
@@ -39,7 +76,7 @@ $result = $conn->query($sql);
             width: 100px;
             height: 100px;
             object-fit: cover;
-        }        
+        }
     </style>
 
 
@@ -54,7 +91,7 @@ $result = $conn->query($sql);
 
             <div class="p-3 d-flex justify-content-between">
                 <!-- 抓資料庫中的產品數量 -->
-                <?php $productCount = $result->num_rows; ?>
+                <?php $productCount = $resultTotal->num_rows; ?>
                 <div class="py-2">
                     共 <?= $productCount ?> 筆
                 </div>
@@ -84,11 +121,13 @@ $result = $conn->query($sql);
             </div>
 
             <!-- 價格排序 -->
-            <div class="py-2 px-3">
-                <div class="btn btn-warning"><i class="text-white bi bi-sort-numeric-down-alt"></i></div>
-                <div class="btn btn-warning"><i class="text-white bi bi-sort-numeric-down"></i></div>
-            </div>
+            <?php if (!isset($_GET["search"])) : ?>
+                <div class="py-2 px-3">
+                    <a class="btn btn-warning <?php if ($order == 1) echo "active" ?>" href="product-list.php?page=<?= $page ?>&order=1"><i class="text-white bi bi-sort-numeric-down-alt"></i></a>
 
+                    <a class="btn btn-warning <?php if ($order == 2) echo "active" ?>" href="product-list.php?page=<?= $page ?>&order=2"><i class="text-white bi bi-sort-numeric-down"></i></a>
+                </div>
+            <?php endif; ?>
 
 
             <?php $rows = $result->fetch_all(MYSQLI_ASSOC); ?>
@@ -158,35 +197,45 @@ $result = $conn->query($sql);
                                     </td>
                                 </tr>
                             <?php endforeach; ?>
-                        <?php else : ?>
-                            目前無使用者
-                        <?php endif; ?>
+
                     </tbody>
                 </table>
         </form>
     </div>
-    </div>
 
     <!-- 分頁 -->
-    <div class="py-5 d-flex justify-content-center">
-        <nav aria-label="Page navigation example">
-            <ul class="pagination pagination-sm">
-                <li class="page-item active" aria-current="page">
-                    <span class="page-link">1</span>
-                </li>
-                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                <li class="page-item"><a class="page-link" href="#">3</a></li>
-            </ul>
-        </nav>
-    </div>
+    <?php if (!isset($_GET["search"])) : ?>
+
+<div class="py-5 d-flex justify-content-center">
+    <nav aria-label="Page navigation example">
+        <ul class="pagination pagination-sm">
+     
+        <?php for($i=1; $i<=$pageCount; $i++): ?>
+            
+            <li class="page-item <?php if($page==$i) echo "active";?>">
+            <a class="page-link" href="product-list.php?page=<?= $i ?>&order=<?=$order ?>"> <?= $i ?> </a></li>
+            <?php endfor; ?>
+        </ul>
+    </nav>
+</div>
+<?php endif; ?>
+
+<?php else : ?>
+    目前無商品
+<?php endif; ?>
+</div>
 
 
-    <!-- Bootstrap JavaScript Libraries -->
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous">
-    </script>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous">
-    </script>
+
+
+
+<!-- Bootstrap JavaScript Libraries -->
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous">
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous">
+</script>
 </body>
 
 </html>

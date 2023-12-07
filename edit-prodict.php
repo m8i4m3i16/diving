@@ -67,7 +67,8 @@ $row=$result->fetch_assoc();
 
             <!-- 商品圖片 -->
             <div class="input-group mt-3">
-                <input type="file" class="form-control" id="file" name="file">
+                <input type="file" class="form-control" id="file" name="file" value="<?= $row["img"]?>">
+                <?php echo $row["img"] ?>
                 <label class="input-group-text" for="inputGroupFile02">上傳圖片</label>
             </div>
 
