@@ -26,12 +26,12 @@ if (isset($_GET["search"])) {
         case 2:
             $orderSql = "price DESC";
             break;
-            //   case 3:
-            //     $orderSql = "name ASC";
-            //     break;
-            //   case 4:
-            //     $orderSql = "name DESC";
-            //     break;
+              case 3:
+                $orderSql = "id ASC";
+                break;
+              case 4:
+                $orderSql = "id DESC";
+                break;
         default:
             $orderSql = "id ASC";
     }
@@ -120,12 +120,18 @@ $result = $conn->query($sql);
                 </form>
             </div>
 
-            <!-- 價格排序 -->
+            <!-- 排序 -->
             <?php if (!isset($_GET["search"])) : ?>
                 <div class="py-2 px-3">
+                    <!-- 價格排序 -->
                     <a class="btn btn-warning <?php if ($order == 1) echo "active" ?>" href="product-list.php?page=<?= $page ?>&order=1"><i class="text-white bi bi-sort-numeric-down-alt"></i></a>
 
                     <a class="btn btn-warning <?php if ($order == 2) echo "active" ?>" href="product-list.php?page=<?= $page ?>&order=2"><i class="text-white bi bi-sort-numeric-down"></i></a>
+                    <!-- id排序 -->
+                    <a class="btn btn-warning <?php if ($order == 3) echo "active" ?>" href="product-list.php?page=<?= $page ?>&order=3"><i class="text-white bi bi-sort-down-alt"></i></a>
+
+                    <a class="btn btn-warning <?php if ($order == 4) echo "active" ?>" href="product-list.php?page=<?= $page ?>&order=4"><i class="text-white bi bi-sort-down"></i></a>
+
                 </div>
             <?php endif; ?>
 
@@ -206,19 +212,24 @@ $result = $conn->query($sql);
     <!-- 分頁 -->
     <?php if (!isset($_GET["search"])) : ?>
 
-<div class="py-5 d-flex justify-content-center">
-    <nav aria-label="Page navigation example">
-        <ul class="pagination pagination-sm">
-     
-        <?php for($i=1; $i<=$pageCount; $i++): ?>
-            
-            <li class="page-item <?php if($page==$i) echo "active";?>">
-            <a class="page-link" href="product-list.php?page=<?= $i ?>&order=<?=$order ?>"> <?= $i ?> </a></li>
-            <?php endfor; ?>
-        </ul>
-    </nav>
-</div>
-<?php endif; ?>
+        <div class="py-5 d-flex justify-content-center">
+            <nav aria-label="Page navigation example">
+                <ul class="pagination pagination-sm">
+
+                    <!-- 使用for，讓li可以一直跑出迴圈 -->
+                    <?php for ($i = 1; $i <= $pageCount; $i++) : ?>
+
+                        <li class="page-item <?php if ($page == $i) echo "active"; ?>"> 
+                        <!-- <?php if ($page == $i) echo "active"; ?>是樣式 -->
+                            <a class="page-link" href="product-list.php?page=<?= $i ?>&order=<?= $order ?>"> <?= $i ?> </a>
+                        </li>
+                    <?php endfor; ?>
+                </ul>
+            </nav>
+        </div>
+    <?php endif; ?>
+    <!-- 分頁 -->
+
 
 <?php else : ?>
     目前無商品

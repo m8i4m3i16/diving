@@ -16,11 +16,12 @@ $info=$_POST["info"];
 $fileName=$_FILES["file"]["name"];
 
 
-
-$sql="UPDATE product SET name='$name',size='$size', count='$count',price='$price',info='$info', img='$fileName', valid=1 WHERE id=$id";
-
-
-
+//如果file name 為空，就不要傳照片
+if($fileName == ''){
+    $sql="UPDATE product SET name='$name',size='$size', count='$count',price='$price',info='$info', valid=1 WHERE id=$id";
+}else{
+    $sql="UPDATE product SET name='$name',size='$size', count='$count',price='$price',info='$info', img='$fileName', valid=1 WHERE id=$id";
+}
 
 
 if($_FILES["file"]["error"]==0){
