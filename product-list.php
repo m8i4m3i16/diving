@@ -143,7 +143,7 @@ $result = $conn->query($sql);
                     <thead>
                         <tr class="text-nowrap">
                             <th scope="col">編號</th>
-                            <th scope="col">商品圖片</th>
+                            <!-- <th scope="col">商品圖片</th> -->
                             <th scope="col">商品名稱</th>
                             <th scope="col">商品描述</th>
                             <th scope="col">規格</th>
