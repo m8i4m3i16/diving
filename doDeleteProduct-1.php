@@ -1,15 +1,15 @@
 <?php
 require_once("product-db-connect.php");
 
-if(!isset($_GET["id"])){
+if(!isset($_GET["product_id"])){
     echo "請循正常管道進入此頁";
     exit;
 }
 
-$id=$_GET["id"];
+$id=$_GET["product_id"];
 
-$sql="UPDATE product SET valid=0 
-WHERE id=$id";
+$sql="UPDATE product SET valid=1
+WHERE product_id=$id";
 
 
 
