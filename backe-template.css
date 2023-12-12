@@ -14,6 +14,7 @@ body {
     color: #fff;
     background: var(--main-color) ;
     height: 100%;
+    width: 16.66vw;
     position: fixed;
     left: 0;
     z-index: 1;
