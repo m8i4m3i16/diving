@@ -6,18 +6,40 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
+    
+    <link rel="stylesheet" href="backe-template.css">
     <?php include("../diving/css.php") ?>
 </head>
 
 <body>
+<div class="container-fluid">
+    <main class="row">
+        <nav class="main-nav col-lg-2 p-0">
+            <h1 class="my-4 text-center">DiVING</h1>
+            <ul class="main-ul list-unstyle p-0">
+                <li class="main-li"><a href=""><i class="bi bi-intersect"></i>總覽</a></li>
+                <li class="main-li"><a href=""><i class="bi bi-file-text"></i>訂單管理</a></li>
+                <li class="main-li"><a href="product-list.php"><i class="bi bi-bag-fill"></i>商品及分類</a></li>
+                <li class="main-li"><a href=""><i class="bi bi-person-circle"></i>顧客管理</a></li>
+                <li class="main-li"><a href=""><i class="bi bi-tv"></i>課程管理</a></li>
+                <li class="main-li"><a href=""><i class="bi bi-person-vcard"></i>教練管理</a></li>
+                <li class="main-li"><a href=""><i class="bi bi-shop-window"></i>行銷</a></li>
+                <li class="main-li"><a href=""><i class="bi bi-megaphone"></i>公告</a></li>
+            </ul>
+        </nav>
+
+        <div class="col-10 px-0" style="margin-left: 16.66%;">
+            <div class="main-top">
+                <a href="" class=""><i class="bi bi-box-arrow-in-right"></i>LOG OUT</a>
+            </div>
+
     <div class="container">
         <form action="doAddProduct.php" method="post" enctype="multipart/form-data">
             <h1 class="text-center p-3">新增商品</h1>
 
             <!-- 返回商品列表按鈕 -->
             <div class="p-3 d-flex text-white justify-content-end">
-                <a href="product-list.php" class="btn btn-primary"title="返回商品列表"><i class="bi bi-bag-x-fill"></i></a>
+                <a href="product-list.php" id="btn"  class="btn" title="返回商品列表"><i class="bi bi-bag-x-fill"></i></a>
             </div>
 
             <!-- 每一個欄位 -->
@@ -56,11 +78,13 @@
 
             <!-- 確定送出按鈕 -->
             <div class="p-5 d-flex justify-content-center">
-                <button class="btn btn-warning text-white" type="submit">確定</button>
+                <button id="btn"  class="btn" type="submit">確定</button>
             </div>
         </form>
-
-
+    </div>
+    <!-- 內容 -->
+    </div>
+    </main>
     </div>
     <!-- Bootstrap JavaScript Libraries -->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous">
