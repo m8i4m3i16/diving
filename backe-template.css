@@ -89,10 +89,10 @@ body {
 .container {
     padding: 30px;
 }
-/* .pagination:active{
+.pagination:active{
     background-color: #c3c3c3;
     color: var(--main-color);
-} */
-.page-link.active{
-    background-color: #335661;
 }
+/* .page-link.active{
+    background-color: #335661;
+} */
